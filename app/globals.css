@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-surface-border;
+  }
+
+  html {
+    @apply bg-ink text-parchment;
+  }
+
+  body {
+    @apply bg-ink text-parchment font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  /* Visible keyboard focus everywhere, styled instead of suppressed. */
+  :focus-visible {
+    outline: 2px solid theme("colors.gold.DEFAULT");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: theme("colors.crimson.DEFAULT");
+    color: theme("colors.parchment.DEFAULT");
+  }
+
+  /* Slim, quiet scrollbars that still work with keyboard/mouse. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.surface.border") transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: theme("colors.surface.border");
+    border-radius: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  .text-stat {
+    font-family: var(--font-display), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
